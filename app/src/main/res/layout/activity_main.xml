@@ -78,6 +78,7 @@
             android:id="@+id/copyBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="copyPassword"
             android:text="Copy Password" />
 
         <Button

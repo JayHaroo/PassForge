@@ -1,5 +1,8 @@
 package com.haroo.passforge;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +16,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     private int passLen = 12;
@@ -67,6 +72,15 @@ public class MainActivity extends AppCompatActivity {
         password = getSaltString();
         TextView generatedText = findViewById(R.id.generatedText);
         generatedText.setText(password);
+    }
+
+    public void copyPassword(View view) {
+        TextView textView = findViewById(R.id.generatedText);
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        String label = "Generated Password";
+        String text = textView.getText().toString();
+        ClipData clip = ClipData.newPlainText(label, text);
+        clipboard.setPrimaryClip(clip);
     }
 
     public void clearPassword(View view) {
