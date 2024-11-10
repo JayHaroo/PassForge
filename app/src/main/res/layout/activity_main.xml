@@ -43,35 +43,49 @@
             android:textSize="20sp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/generatedText"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#B3B3B3"
-        android:fontFamily="@font/poppins"
-        android:text="Password Generated"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:layout_height="218dp"
+        android:orientation="vertical"
+        android:paddingTop="30sp">
 
-    <Button
-        android:id="@+id/generateBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="generatePassword"
-        android:text="Generate Password" />
+        <TextView
+            android:id="@+id/generatedText"
+            android:layout_width="match_parent"
+            android:layout_height="148dp"
+            android:background="#B3B3B3"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="50sp"
+            android:text="Password Generated"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/copyBtn"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Copy Password" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/clearBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="clearPassword"
-        android:text="Clear Password" />
+        <Button
+            android:id="@+id/generateBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="generatePassword"
+            android:text="Generate Password" />
+
+        <Button
+            android:id="@+id/copyBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Copy Password" />
+
+        <Button
+            android:id="@+id/clearBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="clearPassword"
+            android:text="Clear Password" />
+    </LinearLayout>
 
 </LinearLayout>
