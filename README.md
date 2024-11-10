@@ -1,8 +1,8 @@
-#PassForge
+# PassForge
 
-##A simple password generator for android!
+## A simple password generator for android!
 
-###Features:
+### Features:
 - symbols with alphabet
 - alphanumeric
 - String Only
