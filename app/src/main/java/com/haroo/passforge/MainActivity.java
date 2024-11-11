@@ -1,5 +1,6 @@
 package com.haroo.passforge;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -8,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import java.util.Random;
 import androidx.activity.EdgeToEdge;
@@ -17,10 +20,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
-    private int passLen = 12;
+    int passLen = 0;
     private String password = "";
 
     @Override
@@ -34,15 +39,40 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        CheckBox customChar = findViewById(R.id.customChar);
+        TextInputLayout customCharSet = findViewById(R.id.customCharField);
+        customChar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                customCharSet.setEnabled(customChar.isChecked());
+            }
+        });
     }
 
     public String getSaltString() {
+        RadioGroup radioGroup = findViewById(R.id.radioGroup);
+        RadioButton size12 = findViewById(R.id.radioButton1);
+        RadioButton size16 = findViewById(R.id.radioButton2);
+        RadioButton size18 = findViewById(R.id.radioButton3);
+
+        if(size12.isChecked()) {
+            passLen = 12;
+        } else if(size16.isChecked()) {
+            passLen = 16;
+        } else if(size18.isChecked()) {
+            passLen = 18;
+        }
+
+        CheckBox customChar = findViewById(R.id.customChar);
+        TextInputLayout customCharSet = findViewById(R.id.customCharField);
         CheckBox symbolsBox = findViewById(R.id.symbolsBox);
         CheckBox numbersBox = findViewById(R.id.numbersBox);
-        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String SALTCHARSsym = "ABCDEFGHIJKLMNOPQRSTUVWXYZ-+=_':/.?";
-        String SALTCHARSnum = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        String SALTCHARSmix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-+=_':/.?";
+        String CustomSALTCHARS = "";
+        String SALTCHARS = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+        String SALTCHARSsym = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz-+=_':/.?";
+        String SALTCHARSnum = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789";
+        String SALTCHARSmix = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0-1+2=3.4?5/6(7:89";
         StringBuilder salt = new StringBuilder();
         Random rnd = new Random();
         String saltStr = "";
@@ -58,6 +88,11 @@ public class MainActivity extends AppCompatActivity {
             } else if (symbolsBox.isChecked() && numbersBox.isChecked()) {
                 index = (int) (rnd.nextFloat() * SALTCHARSmix.length());
                 salt.append(SALTCHARSmix.charAt(index));
+            }else if(customChar.isChecked()) {
+                customCharSet.isEnabled();
+                CustomSALTCHARS = customCharSet.getEditText().getText().toString();
+                index = (int) (rnd.nextFloat() * CustomSALTCHARS.length());
+                salt.append(CustomSALTCHARS.charAt(index));
             }else{
                 index = (int) (rnd.nextFloat() * SALTCHARS.length());
                 salt.append(SALTCHARS.charAt(index));
