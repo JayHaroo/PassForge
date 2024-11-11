@@ -12,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Random;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,19 +66,24 @@ public class MainActivity extends AppCompatActivity {
             passLen = 18;
         }
 
+
         CheckBox customChar = findViewById(R.id.customChar);
         TextInputLayout customCharSet = findViewById(R.id.customCharField);
         CheckBox symbolsBox = findViewById(R.id.symbolsBox);
         CheckBox numbersBox = findViewById(R.id.numbersBox);
-        String CustomSALTCHARS = "";
+
+        String customSALTCHARS = "";
         String SALTCHARS = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
         String SALTCHARSsym = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz-+=_':/.?";
         String SALTCHARSnum = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789";
         String SALTCHARSmix = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0-1+2=3.4?5/6(7:89";
+
         StringBuilder salt = new StringBuilder();
         Random rnd = new Random();
         String saltStr = "";
         int index;
+
+
 
         while (salt.length() < passLen) { // length of the random string.
             if(symbolsBox.isChecked()) {
@@ -90,9 +97,18 @@ public class MainActivity extends AppCompatActivity {
                 salt.append(SALTCHARSmix.charAt(index));
             }else if(customChar.isChecked()) {
                 customCharSet.isEnabled();
-                CustomSALTCHARS = customCharSet.getEditText().getText().toString();
-                index = (int) (rnd.nextFloat() * CustomSALTCHARS.length());
-                salt.append(CustomSALTCHARS.charAt(index));
+                customSALTCHARS = customCharSet.getEditText().getText().toString();
+
+                if(!customSALTCHARS.isEmpty()) {
+                    index = (int) (rnd.nextFloat() * customSALTCHARS.length());
+                    salt.append(customSALTCHARS.charAt(index));
+                }else{
+                    Toast toast = Toast.makeText(getApplicationContext(), "Please enter a custom character set", Toast.LENGTH_SHORT);
+                    toast.show();
+                    index = (int) (rnd.nextFloat() * SALTCHARS.length());
+                    salt.append(SALTCHARS.charAt(index));
+                }
+
             }else{
                 index = (int) (rnd.nextFloat() * SALTCHARS.length());
                 salt.append(SALTCHARS.charAt(index));
