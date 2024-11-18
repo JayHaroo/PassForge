@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFF"
+    android:background="#0c0a0b"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -17,6 +17,7 @@
         android:gravity="center|center_horizontal"
         android:text="PassForge"
         android:textAlignment="center"
+        android:textColor="#fafafa"
         android:textSize="34sp"
         android:textStyle="bold" />
 
@@ -30,8 +31,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:buttonTint="#fafafa"
             android:fontFamily="@font/poppins"
             android:text="Symbols"
+            android:textColor="#fafafa"
             android:textSize="20sp" />
 
         <CheckBox
@@ -39,8 +42,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:buttonTint="#fafafa"
             android:fontFamily="@font/poppins"
             android:text="Numbers"
+            android:textColor="#fafafa"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -54,6 +59,7 @@
                 android:id="@+id/customChar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:buttonTint="#fafafa"
                 android:gravity="center|center_vertical"
                 android:paddingLeft="10sp" />
 
@@ -70,8 +76,11 @@
                     android:id="@+id/customCharSet"
                     android:layout_width="285dp"
                     android:layout_height="wrap_content"
+                    android:drawableTint="#fafafa"
                     android:enabled="false"
-                    android:hint="Custom Character Set" />
+                    android:foregroundTint="#fafafa"
+                    android:hint="Custom Character Set"
+                    android:textColor="#fafafa" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -83,6 +92,7 @@
             android:fontFamily="@font/poppins"
             android:text="Choose Password Length:"
             android:textAlignment="center"
+            android:textColor="#fafafa"
             android:textSize="16sp" />
 
         <RadioGroup
@@ -97,22 +107,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:buttonTint="#fafafa"
                 android:checked="true"
-                android:text="12" />
+                android:text="12"
+                android:textColor="#fafafa" />
 
             <RadioButton
                 android:id="@+id/radioButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="16" />
+                android:buttonTint="#fafafa"
+                android:text="16"
+                android:textColor="#fafafa" />
 
             <RadioButton
                 android:id="@+id/radioButton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="18" />
+                android:buttonTint="#fafafa"
+                android:text="18"
+                android:textColor="#fafafa" />
         </RadioGroup>
 
     </LinearLayout>
@@ -127,7 +143,6 @@
             android:id="@+id/generatedText"
             android:layout_width="match_parent"
             android:layout_height="148dp"
-            android:background="#273469"
             android:fontFamily="@font/poppins"
             android:paddingTop="50sp"
             android:text="Password Generated"
