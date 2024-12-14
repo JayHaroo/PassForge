@@ -180,6 +180,14 @@
             android:backgroundTint="#30343F"
             android:onClick="clearPassword"
             android:text="Clear Password" />
+
+        <Button
+            android:id="@+id/copyToManagerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#30343F"
+            android:onClick="openPassManager"
+            android:text="Copy to Password Manager" />
     </LinearLayout>
 
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -138,5 +139,16 @@ public class MainActivity extends AppCompatActivity {
         password = "Password Generated";
         TextView generatedText = findViewById(R.id.generatedText);
         generatedText.setText(password);
+    }
+
+    public void openPassManager(View view) {
+        Password_Manager pm = new Password_Manager();
+        startActivity(new Intent(this, Password_Manager.class));
+        if(password != "Password Generated"){
+            pm.addPasswordToJSON(this, password);
+        }else{
+            Toast toast = Toast.makeText(getApplicationContext(), "Please generate a password first", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 }
