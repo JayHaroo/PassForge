@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +26,22 @@ public class Password_Manager extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_manager);
+        Button deleteBtn = findViewById(R.id.deleteBtn);
+
+        deleteBtn.setOnClickListener(view -> {
+                    String fileName = "passwords.json";
+                    try {
+                        FileOutputStream fos = openFileOutput(fileName, Context.MODE_PRIVATE);
+                        fos.write("[]".getBytes());
+                        fos.close();
+                        finish();
+                        startActivity(getIntent());
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
 
         ListView listView = findViewById(R.id.listPass);
 
@@ -113,4 +131,5 @@ public class Password_Manager extends AppCompatActivity {
             return null;
         }
     }
+
 }

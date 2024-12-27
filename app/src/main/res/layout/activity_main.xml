@@ -135,20 +135,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="206dp"
+        android:layout_height="126dp"
         android:orientation="vertical"
         android:paddingTop="30sp">
 
         <TextView
             android:id="@+id/generatedText"
             android:layout_width="match_parent"
-            android:layout_height="148dp"
+            android:layout_height="80dp"
             android:fontFamily="@font/poppins"
-            android:paddingTop="50sp"
+            android:foregroundGravity="center_vertical|center|center_horizontal"
+            android:gravity="center|center_horizontal|center_vertical"
             android:text="Password Generated"
             android:textAlignment="center"
             android:textColor="#E4D9FF"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -188,6 +189,14 @@
             android:backgroundTint="#30343F"
             android:onClick="openPassManager"
             android:text="Copy to Password Manager" />
+
+        <Button
+            android:id="@+id/passManagerBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#30343F"
+            android:onClick="openManager"
+            android:text="Open Password Manager" />
     </LinearLayout>
 
 </LinearLayout>

@@ -84,8 +84,6 @@ public class MainActivity extends AppCompatActivity {
         String saltStr = "";
         int index;
 
-
-
         while (salt.length() < passLen) { // length of the random string.
             if(symbolsBox.isChecked()) {
                 index = (int) (rnd.nextFloat() * SALTCHARSsym.length());
@@ -142,13 +140,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openPassManager(View view) {
-        Password_Manager pm = new Password_Manager();
-        startActivity(new Intent(this, Password_Manager.class));
         if(password != "Password Generated"){
+            Password_Manager pm = new Password_Manager();
+            startActivity(new Intent(this, Password_Manager.class));
             pm.addPasswordToJSON(this, password);
         }else{
             Toast toast = Toast.makeText(getApplicationContext(), "Please generate a password first", Toast.LENGTH_SHORT);
             toast.show();
         }
+    }
+
+    public void openManager(View view){
+        startActivity(new Intent(this, Password_Manager.class));
     }
 }
