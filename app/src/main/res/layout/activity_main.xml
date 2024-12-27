@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0c0a0b"
+    android:backgroundTintMode="src_in"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -80,7 +81,8 @@
                     android:enabled="false"
                     android:foregroundTint="#fafafa"
                     android:hint="Custom Character Set"
-                    android:textColor="#fafafa" />
+                    android:textColor="#fafafa"
+                    android:textColorHint="#fafafa" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 

@@ -140,7 +140,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openPassManager(View view) {
-        if(password != "Password Generated"){
+        TextView generatedText = findViewById(R.id.generatedText);
+        if(generatedText.getText() != "Password Generated"){
             Password_Manager pm = new Password_Manager();
             startActivity(new Intent(this, Password_Manager.class));
             pm.addPasswordToJSON(this, password);
